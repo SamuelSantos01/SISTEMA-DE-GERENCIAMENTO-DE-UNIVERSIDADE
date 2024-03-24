@@ -26,7 +26,7 @@ public class Professor extends Pessoa {
     @Column(name = "FORMAÇÃO")
     private String formacao;
 
-    @ManyToMany(mappedBy = "professor")
+    @ManyToMany(mappedBy = "professores")
     private List<Turma> turmas;
 
     public Professor(String nome, String sobreNome, String telefone, String email) {

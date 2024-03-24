@@ -12,3 +12,4 @@ public interface ProfessorService {
   public List<Professor> consultarTodosOsProfessores();
   public Professor consultarById(Long id);
 }
+
