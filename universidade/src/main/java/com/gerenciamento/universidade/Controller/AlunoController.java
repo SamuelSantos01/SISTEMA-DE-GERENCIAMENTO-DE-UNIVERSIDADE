@@ -5,6 +5,7 @@ package com.gerenciamento.universidade.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,8 +36,14 @@ public class AlunoController {
         return ResponseEntity.status(HttpStatus.OK).body(alunoServiceImplemente.consultarTodosOsAlunos());
     }
 
-    @GetMapping("/concultarAlunos/{id}")
+    @GetMapping("/consultarAluno/{id}")
     public ResponseEntity<Object> consultarAlunoId(@PathVariable(value = "id") Long id){
         return ResponseEntity.status(HttpStatus.OK).body(alunoServiceImplemente.consultarById(id));
+    }
+
+    @DeleteMapping("/deletarAluno/{id}")
+    public ResponseEntity<Object> deletarAluno(@PathVariable(value = "id") Long id){
+        alunoServiceImplemente.deletarAluno(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Aluno deletado");
     }
 }
