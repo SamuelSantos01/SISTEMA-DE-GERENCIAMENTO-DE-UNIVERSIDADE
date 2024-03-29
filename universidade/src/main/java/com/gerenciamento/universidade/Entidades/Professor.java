@@ -1,7 +1,7 @@
 package com.gerenciamento.universidade.Entidades;
 
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,6 +30,8 @@ public class Professor extends Pessoa {
     private String formacao;
 
     @ManyToMany(mappedBy = "professores")
+
+    @JsonManagedReference
     private List<Turma> turmas;
 
 }
