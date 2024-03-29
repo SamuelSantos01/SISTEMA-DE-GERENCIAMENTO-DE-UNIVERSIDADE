@@ -1,7 +1,8 @@
 package com.gerenciamento.universidade.Entidades;
 
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,10 +33,8 @@ public class Turma {
     public String curso;
 
     @ManyToMany
-    @JsonBackReference
     private List<Professor> professores;
 
-    @OneToMany
-    public List<Matricula> matricula;
+    @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL)
+    private List<Matricula> matricula;
 }
-

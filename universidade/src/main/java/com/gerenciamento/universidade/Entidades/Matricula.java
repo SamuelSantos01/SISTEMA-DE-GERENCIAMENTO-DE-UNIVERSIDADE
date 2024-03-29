@@ -1,5 +1,7 @@
 package com.gerenciamento.universidade.Entidades;
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +14,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 
 @Getter
 @Setter
@@ -28,7 +29,7 @@ public class Matricula {
     @Column(name = "CURSO")
     public String Curso;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "RA_ID", nullable = false)
     public Aluno aluno;
 

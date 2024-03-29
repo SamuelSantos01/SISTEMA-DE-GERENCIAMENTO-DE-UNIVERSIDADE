@@ -26,7 +26,7 @@ public class Aluno extends Pessoa {
     private Long RA_ID;
 
     @OneToMany(mappedBy = "aluno")
+
     private List<Matricula> matriculas;
 
 }
-
