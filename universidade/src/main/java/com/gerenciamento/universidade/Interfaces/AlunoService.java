@@ -1,14 +1,17 @@
 package com.gerenciamento.universidade.Interfaces;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 import com.gerenciamento.universidade.Entidades.Aluno;
 
 @Service
 public interface AlunoService {
-    public void cadastrarAluno(Aluno aluno);
-    public void deletarAluno(Long id);
-    public void atualizarDados(Aluno aluno);
+    public Aluno cadastrarAluno(Aluno aluno);
     public List<Aluno> consultarTodosOsAlunos();
-    public Aluno consultarById(Long id);
+    public Optional<Aluno> consultarById(Long id);
+    public void deletarAluno(Long id);
+    //public void atualizarDados(Aluno aluno);
+    
 }

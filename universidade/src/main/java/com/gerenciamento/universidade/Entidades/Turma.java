@@ -12,15 +12,20 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "TURMA")
 @Table(name = "TURMAS")
 public class Turma {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long RT_ID;
