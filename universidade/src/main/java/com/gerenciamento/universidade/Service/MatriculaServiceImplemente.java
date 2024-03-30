@@ -1,10 +1,12 @@
 package com.gerenciamento.universidade.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gerenciamento.universidade.DTOs.MatriculaResponseDTO;
 import com.gerenciamento.universidade.Entidades.Aluno;
 import com.gerenciamento.universidade.Entidades.Matricula;
 import com.gerenciamento.universidade.Entidades.Turma;
@@ -54,18 +56,23 @@ public class MatriculaServiceImplemente implements MatriculaService {
     }
 
     @Override
-    public List<Matricula> consultarTodasAsMatriculas() {
+    public List<MatriculaResponseDTO> consultarTodasAsMatriculas() {
         List<Matricula> matriculas = repositorioMatricula.findAll();
-        return matriculas;
+        List<MatriculaResponseDTO> matriculasDTO = new ArrayList<>();
+        for (Matricula matricula : matriculas) {
+            matriculasDTO.add(new MatriculaResponseDTO(matricula.getRM_ID(), matricula.getCurso(), matricula.getAluno().getRA_ID(), matricula.getTurma().getRT_ID()));
+        }
+        return matriculasDTO;
     }
 
     @Override
-    public Matricula consultarById(Long id) {
+    public MatriculaResponseDTO consultarById(Long id) {
         if (id == null) {
             throw new IllegalArgumentException("ID da matrícula não pode ser nulo");
         }
-        return repositorioMatricula.findById(id)
+        Matricula matricula = repositorioMatricula.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Matrícula não encontrada com o ID: " + id));
+        return new MatriculaResponseDTO(matricula.getRM_ID(), matricula.getCurso(), matricula.getAluno().getRA_ID(), matricula.getTurma().getRT_ID());
     }
     
     @Override

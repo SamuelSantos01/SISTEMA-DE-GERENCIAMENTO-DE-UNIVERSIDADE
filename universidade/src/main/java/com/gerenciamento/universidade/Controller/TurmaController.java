@@ -5,7 +5,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.gerenciamento.universidade.DTOs.TurmaDTO;
+import com.gerenciamento.universidade.DTOs.TurmaRequestDTO;
+import com.gerenciamento.universidade.DTOs.TurmaResponseDTO;
 import com.gerenciamento.universidade.Entidades.Turma;
 import com.gerenciamento.universidade.Service.TurmaServiceImplemente;
 
@@ -19,7 +20,7 @@ public class TurmaController {
     private TurmaServiceImplemente turmaServiceImplemente;
 
     @PostMapping("/cadastrarTurma")
-    public ResponseEntity<Turma> cadastrarTurma(@RequestBody TurmaDTO turmaDTO) {
+    public ResponseEntity<Turma> cadastrarTurma(@RequestBody TurmaRequestDTO turmaDTO) {
         Turma turmaCadastrada = turmaServiceImplemente.cadastrarTurma(turmaDTO.getIdProfessor(), turmaDTO.getCurso());
         return ResponseEntity.status(HttpStatus.CREATED).body(turmaCadastrada);
     }
@@ -31,14 +32,14 @@ public class TurmaController {
     }
 
     @GetMapping("/consultarTodasAsTurmas")
-    public ResponseEntity<List<Turma>> consultarTodasAsTurmas() {
-        List<Turma> turmas = turmaServiceImplemente.consultarTodasAsTurmas();
-        return ResponseEntity.ok().body(turmas);
+    public ResponseEntity<List<TurmaResponseDTO>> consultarTodasAsTurmas() {
+        List<TurmaResponseDTO> turmasDTO = turmaServiceImplemente.consultarTodasAsTurmas();
+        return ResponseEntity.ok().body(turmasDTO);
     }
 
     @GetMapping("/consultarTurmaPorId/{id}")
-    public ResponseEntity<Turma> consultarTurmaPorId(@PathVariable Long id) {
-        Turma turma = turmaServiceImplemente.consultarById(id);
-        return ResponseEntity.ok().body(turma);
+    public ResponseEntity<TurmaResponseDTO> consultarTurmaPorId(@PathVariable Long id) {
+        TurmaResponseDTO turmaDTO = turmaServiceImplemente.consultarById(id);
+        return ResponseEntity.ok().body(turmaDTO);
     }
 }

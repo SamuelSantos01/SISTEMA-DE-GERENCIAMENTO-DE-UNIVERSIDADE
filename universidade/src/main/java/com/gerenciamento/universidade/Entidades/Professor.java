@@ -21,6 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity(name = "PROFESSOR")
 @Table(name = "PROFESSORES")
+
 public class Professor extends Pessoa {
 
     @Id

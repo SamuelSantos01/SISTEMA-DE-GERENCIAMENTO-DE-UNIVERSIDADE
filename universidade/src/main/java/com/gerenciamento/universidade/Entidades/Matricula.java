@@ -1,7 +1,6 @@
 package com.gerenciamento.universidade.Entidades;
 
 
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity(name = "MATRICULA")
 @Table(name = "MATRICULAS")
+
 public class Matricula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -23,6 +23,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity(name = "TURMA")
 @Table(name = "TURMAS")
+
 public class Turma {
     
     @Id

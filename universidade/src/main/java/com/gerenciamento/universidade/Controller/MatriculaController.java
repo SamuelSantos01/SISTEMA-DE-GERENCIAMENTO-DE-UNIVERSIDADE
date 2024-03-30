@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gerenciamento.universidade.DTOs.MatriculaDTO;
-import com.gerenciamento.universidade.Entidades.Matricula;
+import com.gerenciamento.universidade.DTOs.MatriculaRequestDTO;
+import com.gerenciamento.universidade.DTOs.MatriculaResponseDTO;
 import com.gerenciamento.universidade.Service.MatriculaServiceImplemente;
 
 @RestController
@@ -25,21 +25,21 @@ public class MatriculaController {
     private MatriculaServiceImplemente matriculaServiceImplemente;
 
     @PostMapping("/matricularAluno")
-    public ResponseEntity<Object> matricularAluno(@RequestBody MatriculaDTO matriculaDTO) {
+    public ResponseEntity<Object> matricularAluno(@RequestBody MatriculaRequestDTO matriculaDTO) {
         matriculaServiceImplemente.matricularAluno(matriculaDTO.getIdAluno(), matriculaDTO.getIdTurma(),
                 matriculaDTO.getCurso());
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/consultarTodasAsMatriculas")
-    public ResponseEntity<List<Matricula>> consultarTodasAsMatriculas() {
-        List<Matricula> matriculas = matriculaServiceImplemente.consultarTodasAsMatriculas();
+     @GetMapping("/consultarTodasAsMatriculas")
+    public ResponseEntity<List<MatriculaResponseDTO>> consultarTodasAsMatriculas() {
+        List<MatriculaResponseDTO> matriculas = matriculaServiceImplemente.consultarTodasAsMatriculas();
         return ResponseEntity.ok().body(matriculas);
     }
 
     @GetMapping("/consultarMatricula/{id}")
-    public ResponseEntity<Matricula> consultarMatriculaPorId(@PathVariable Long id) {
-        Matricula matricula = matriculaServiceImplemente.consultarById(id);
+    public ResponseEntity<MatriculaResponseDTO> consultarMatriculaPorId(@PathVariable Long id) {
+        MatriculaResponseDTO matricula = matriculaServiceImplemente.consultarById(id);
         return ResponseEntity.ok().body(matricula);
     }
 

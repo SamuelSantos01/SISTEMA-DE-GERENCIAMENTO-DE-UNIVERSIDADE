@@ -5,12 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MatriculaDTO {
-    private Long idAluno;
-    private Long idTurma;
+public class MatriculaResponseDTO {
+    private Long id;
     private String curso;
+    private Long alunoId; // Alterado para armazenar apenas o ID do aluno
+    private Long turmaId; // Alterado para armazenar apenas o ID da turma
 }

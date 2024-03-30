@@ -2,11 +2,14 @@ package com.gerenciamento.universidade.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gerenciamento.universidade.DTOs.ProfessorResponseDTO;
 import com.gerenciamento.universidade.Entidades.Professor;
+import com.gerenciamento.universidade.Entidades.Turma;
 import com.gerenciamento.universidade.Interfaces.ProfessorService;
 import com.gerenciamento.universidade.Repositorio.RepositorioProfessor;
 
@@ -26,18 +29,20 @@ public class ProfessorServiceImplemente implements ProfessorService {
     }
     
     @Override
-    public List<Professor> consultarTodosOsProfessores(){
+    public List<ProfessorResponseDTO> consultarTodosOsProfessores() {
         List<Professor> professores = repositorioProfessor.findAll();
-
-        return professores;
+        return professores.stream()
+                .map(professor -> new ProfessorResponseDTO(professor.getNome(), professor.getSobreNome(), professor.getFormacao(), professor.getTurmas().stream().map(Turma::getRT_ID).collect(Collectors.toList())))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public Optional<Professor> consultarById(Long id){
+    public Optional<ProfessorResponseDTO> consultarById(Long id) {
         if (id != null) {
-            return repositorioProfessor.findById(id);
+            Optional<Professor> optionalProfessor = repositorioProfessor.findById(id);
+            return optionalProfessor.map(professor -> new ProfessorResponseDTO(professor.getNome(), professor.getSobreNome(), professor.getFormacao(), professor.getTurmas().stream().map(Turma::getRT_ID).collect(Collectors.toList())));
         } else {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("ID do professor não pode ser nulo.");
         }
     }
 

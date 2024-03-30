@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.gerenciamento.universidade.Entidades.Matricula;
+import com.gerenciamento.universidade.DTOs.MatriculaResponseDTO;
 
 @Service
 public interface MatriculaService {
     public void matricularAluno(Long idAluno, Long idTurma, String curso);
 
-    List<Matricula> consultarTodasAsMatriculas();
+    List<MatriculaResponseDTO> consultarTodasAsMatriculas();
 
-    Matricula consultarById(Long id);
+    MatriculaResponseDTO consultarById(Long id);
 
     void deletarMatricula(Long id);
 }
