@@ -1,7 +1,6 @@
 package com.gerenciamento.universidade.Entidades;
 
 import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -16,7 +15,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
@@ -24,8 +22,7 @@ import lombok.Setter;
 @Entity(name = "TURMA")
 @Table(name = "TURMAS")
 
-public class Turma {
-    
+public class Turma {  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long RT_ID;

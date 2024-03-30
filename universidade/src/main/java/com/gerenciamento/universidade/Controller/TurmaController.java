@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import com.gerenciamento.universidade.DTOs.TurmaRequestDTO;
 import com.gerenciamento.universidade.DTOs.TurmaResponseDTO;
 import com.gerenciamento.universidade.Entidades.Turma;
 import com.gerenciamento.universidade.Service.TurmaServiceImplemente;
-
 import java.util.List;
 
 @RestController

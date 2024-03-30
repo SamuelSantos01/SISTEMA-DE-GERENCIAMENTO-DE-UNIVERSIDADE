@@ -13,7 +13,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @MappedSuperclass
 public class Pessoa {
-
     @Column(name = "NOME")
     public String nome;
     @Column(name = "SOBRE_NOME")

@@ -5,12 +5,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Setter
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
-class ProfessorDTO {
-    private Long id;
-    private String nome;
-    private String formacao;
+public class MatriculaDTO {
+    private Long matriculaId;
+    private String nomeCurso;
 }

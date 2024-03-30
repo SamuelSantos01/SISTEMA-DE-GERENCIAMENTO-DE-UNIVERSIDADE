@@ -12,6 +12,7 @@ import lombok.Setter;
 public class MatriculaResponseDTO {
     private Long id;
     private String curso;
-    private Long alunoId; // Alterado para armazenar apenas o ID do aluno
-    private Long turmaId; // Alterado para armazenar apenas o ID da turma
+    private String nomeAluno;
+    private Long alunoId;
+    private Long turmaId;
 }

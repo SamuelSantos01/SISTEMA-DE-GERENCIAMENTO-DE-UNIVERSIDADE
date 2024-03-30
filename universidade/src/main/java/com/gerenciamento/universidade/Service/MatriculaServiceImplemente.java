@@ -1,11 +1,9 @@
 package com.gerenciamento.universidade.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.gerenciamento.universidade.DTOs.MatriculaResponseDTO;
 import com.gerenciamento.universidade.Entidades.Aluno;
 import com.gerenciamento.universidade.Entidades.Matricula;
@@ -58,11 +56,9 @@ public class MatriculaServiceImplemente implements MatriculaService {
     @Override
     public List<MatriculaResponseDTO> consultarTodasAsMatriculas() {
         List<Matricula> matriculas = repositorioMatricula.findAll();
-        List<MatriculaResponseDTO> matriculasDTO = new ArrayList<>();
-        for (Matricula matricula : matriculas) {
-            matriculasDTO.add(new MatriculaResponseDTO(matricula.getRM_ID(), matricula.getCurso(), matricula.getAluno().getRA_ID(), matricula.getTurma().getRT_ID()));
-        }
-        return matriculasDTO;
+        return matriculas.stream()
+                .map(matricula -> new MatriculaResponseDTO(matricula.getRM_ID(), matricula.getCurso(), matricula.getAluno().getNome(), matricula.getAluno().getRA_ID(), matricula.getTurma().getRT_ID()))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -72,7 +68,7 @@ public class MatriculaServiceImplemente implements MatriculaService {
         }
         Matricula matricula = repositorioMatricula.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Matrícula não encontrada com o ID: " + id));
-        return new MatriculaResponseDTO(matricula.getRM_ID(), matricula.getCurso(), matricula.getAluno().getRA_ID(), matricula.getTurma().getRT_ID());
+        return new MatriculaResponseDTO(matricula.getRM_ID(), matricula.getCurso(), matricula.getAluno().getNome(), matricula.getAluno().getRA_ID(), matricula.getTurma().getRT_ID());
     }
     
     @Override
@@ -83,5 +79,4 @@ public class MatriculaServiceImplemente implements MatriculaService {
             throw new IllegalArgumentException("Matricula não encontradao");
         }
     }
-    
 }

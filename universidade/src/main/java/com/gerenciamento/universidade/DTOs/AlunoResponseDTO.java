@@ -1,7 +1,6 @@
 package com.gerenciamento.universidade.DTOs;
 
 import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,5 +13,5 @@ import lombok.Setter;
 public class AlunoResponseDTO {
     private String nome;
     private String sobreNome;
-    private List<Long> matriculaIds; // Alterado para armazenar apenas IDs de matrículas
+    private List<MatriculaDTO> matriculas;
 }

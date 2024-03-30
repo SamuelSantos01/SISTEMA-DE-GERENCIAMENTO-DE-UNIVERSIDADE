@@ -2,9 +2,7 @@ package com.gerenciamento.universidade.Interfaces;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
-
 import com.gerenciamento.universidade.DTOs.ProfessorResponseDTO;
 import com.gerenciamento.universidade.Entidades.Professor;
 
@@ -15,6 +13,4 @@ public interface ProfessorService {
   public Optional<ProfessorResponseDTO> consultarById(Long id);
   public void deletarProfessor(Long id);
   //public void atualizarDados(Professor professor);
-
 }
-

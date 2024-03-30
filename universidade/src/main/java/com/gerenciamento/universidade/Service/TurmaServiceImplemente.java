@@ -3,10 +3,8 @@ package com.gerenciamento.universidade.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.gerenciamento.universidade.DTOs.TurmaResponseDTO;
 import com.gerenciamento.universidade.Entidades.Matricula;
 import com.gerenciamento.universidade.Entidades.Professor;
@@ -36,7 +34,7 @@ public class TurmaServiceImplemente implements TurmaService{
     
         Professor professor = repositorioProfessor.findById(idProfessor)
                 .orElseThrow(() -> new IllegalArgumentException("Professor não encontrado"));
-    
+                
         Turma turma = new Turma();
         turma.setProfessores(new ArrayList<>());
         turma.setCurso(curso);
@@ -56,33 +54,32 @@ public class TurmaServiceImplemente implements TurmaService{
     }
 
     @Override
-public List<TurmaResponseDTO> consultarTodasAsTurmas() {
-    List<Turma> turmas = repositorioTurma.findAll();
-    return turmas.stream()
-            .map(this::convertToDTO)
-            .collect(Collectors.toList());
-}
-
-@Override
-public TurmaResponseDTO consultarById(Long id) {
-    if (id == null) {
-        throw new IllegalArgumentException("ID da turma não pode ser nulo");
+    public List<TurmaResponseDTO> consultarTodasAsTurmas() {
+        List<Turma> turmas = repositorioTurma.findAll();
+        return turmas.stream()
+                .map(this::convertToDTO)
+                .collect(Collectors.toList());
     }
 
-    Turma turma = repositorioTurma.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Turma não encontrada com o ID: " + id));
-    
-    return convertToDTO(turma);
-}
+    @Override
+    public TurmaResponseDTO consultarById(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("ID da turma não pode ser nulo");
+        }
 
-private TurmaResponseDTO convertToDTO(Turma turma) {
-    List<Long> professorIds = turma.getProfessores().stream()
-            .map(Professor::getRP_ID)
-            .collect(Collectors.toList());
-    List<Long> matriculaIds = turma.getMatricula().stream()
-            .map(Matricula::getRM_ID)
-            .collect(Collectors.toList());
-    return new TurmaResponseDTO(turma.getRT_ID(), turma.getCurso(), professorIds, matriculaIds);
-}
+        Turma turma = repositorioTurma.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Turma não encontrada com o ID: " + id));
+        
+        return convertToDTO(turma);
+    }
 
+    private TurmaResponseDTO convertToDTO(Turma turma) {
+        List<Long> professorIds = turma.getProfessores().stream()
+                .map(Professor::getRP_ID)
+                .collect(Collectors.toList());
+        List<Long> matriculaIds = turma.getMatricula().stream()
+                .map(Matricula::getRM_ID)
+                .collect(Collectors.toList());
+        return new TurmaResponseDTO(turma.getRT_ID(), turma.getCurso(), professorIds, matriculaIds);
+    }
 }

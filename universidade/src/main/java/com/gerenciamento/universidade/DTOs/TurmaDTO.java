@@ -1,6 +1,5 @@
 package com.gerenciamento.universidade.DTOs;
 
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,9 +9,7 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProfessorResponseDTO {
+public class TurmaDTO {
+    private Long id;
     private String nome;
-    private String sobreNome;
-    private String formacao;
-    private List<TurmaDTO> turmaIds;
 }

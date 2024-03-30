@@ -3,16 +3,13 @@ package com.gerenciamento.universidade.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.gerenciamento.universidade.DTOs.AlunoResponseDTO;
+import com.gerenciamento.universidade.DTOs.MatriculaDTO;
 import com.gerenciamento.universidade.Entidades.Aluno;
-import com.gerenciamento.universidade.Entidades.Matricula;
 import com.gerenciamento.universidade.Interfaces.AlunoService;
 import com.gerenciamento.universidade.Repositorio.RepositorioAluno;
-
 
 @Service
 public class AlunoServiceImplemente implements AlunoService{
@@ -33,26 +30,26 @@ public class AlunoServiceImplemente implements AlunoService{
     public List<AlunoResponseDTO> consultarTodosOsAlunos() {
         List<Aluno> alunos = repositorioAluno.findAll();
         return alunos.stream()
-                .map(aluno -> new AlunoResponseDTO(aluno.getNome(), aluno.getSobreNome(), obterMatriculaIds(aluno)))
+                .map(aluno -> new AlunoResponseDTO(aluno.getNome(), aluno.getSobreNome(), obterMatriculaDTOs(aluno)))
                 .collect(Collectors.toList());
     }
 
-@Override
+    @Override
     public Optional<AlunoResponseDTO> consultarById(Long id) {
         if (id != null) {
             Optional<Aluno> optionalAluno = repositorioAluno.findById(id);
-            return optionalAluno.map(aluno -> new AlunoResponseDTO(aluno.getNome(), aluno.getSobreNome(), obterMatriculaIds(aluno)));
+            return optionalAluno.map(aluno -> new AlunoResponseDTO(aluno.getNome(), aluno.getSobreNome(), obterMatriculaDTOs(aluno)));
         } else {
             throw new IllegalArgumentException("ID do aluno não pode ser nulo.");
         }
     }
 
-// Método auxiliar para obter apenas os IDs das matrículas de um aluno
-private List<Long> obterMatriculaIds(Aluno aluno) {
-    return aluno.getMatriculas().stream()
-            .map(Matricula::getRM_ID)
-            .collect(Collectors.toList());
-}
+    //método auxiliar para os métodos "consultarById e consultarTodosOsAlunos"
+    private List<MatriculaDTO> obterMatriculaDTOs(Aluno aluno) {
+        return aluno.getMatriculas().stream()
+                .map(matricula -> new MatriculaDTO(matricula.getRM_ID(), matricula.getCurso())).collect(Collectors.toList());
+    }
+
     @Override
     public void deletarAluno(Long id){
         if(id != null){
@@ -62,8 +59,4 @@ private List<Long> obterMatriculaIds(Aluno aluno) {
             throw new IllegalArgumentException();
         }
     }
-
 }
-
-
-
