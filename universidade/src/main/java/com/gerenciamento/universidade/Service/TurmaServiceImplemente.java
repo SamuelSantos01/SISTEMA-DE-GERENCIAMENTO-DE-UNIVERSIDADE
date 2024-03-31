@@ -14,15 +14,19 @@ import com.gerenciamento.universidade.Repositorio.RepositorioProfessor;
 import com.gerenciamento.universidade.Repositorio.RepositorioTurma;
 
 @Service
+// classe criada implementando a interface "TurmaService" - Poliformismo
 public class TurmaServiceImplemente implements TurmaService{
 
     @Autowired
+    // criando um objeto visivel somente para esta classe - Encapsulamento
     private RepositorioProfessor repositorioProfessor;
     
     @Autowired
+    // criando um objeto visivel somente para esta classe - Encapsulamento
     private RepositorioTurma repositorioTurma;
     
     @Override
+    // metodo utilizado para cadastrar uma nova turma
     public Turma cadastrarTurma(Long idProfessor, String curso) {
         if (idProfessor == null) {
             throw new IllegalArgumentException("ID do professor não pode ser nulo");
@@ -44,6 +48,7 @@ public class TurmaServiceImplemente implements TurmaService{
     }
 
     @Override
+    // metodo utilizado para deletar uma turma especifica por "id"
     public void deletarturma(Long id) {
         if(id != null){
             repositorioTurma.deleteById(id);
@@ -54,6 +59,7 @@ public class TurmaServiceImplemente implements TurmaService{
     }
 
     @Override
+    // metodo utilizado para consultar todas as turmas
     public List<TurmaResponseDTO> consultarTodasAsTurmas() {
         List<Turma> turmas = repositorioTurma.findAll();
         return turmas.stream()
@@ -62,6 +68,7 @@ public class TurmaServiceImplemente implements TurmaService{
     }
 
     @Override
+    // metodo utilizado para consultar uma turma especifica por "id"
     public TurmaResponseDTO consultarById(Long id) {
         if (id == null) {
             throw new IllegalArgumentException("ID da turma não pode ser nulo");
@@ -73,6 +80,7 @@ public class TurmaServiceImplemente implements TurmaService{
         return convertToDTO(turma);
     }
 
+    // metodo utilizado para auxiliar os metodos "consultarById" e "consultarTodasAsTurmas"
     private TurmaResponseDTO convertToDTO(Turma turma) {
         List<Long> professorIds = turma.getProfessores().stream()
                 .map(Professor::getRP_ID)

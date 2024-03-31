@@ -14,18 +14,23 @@ import com.gerenciamento.universidade.Repositorio.RepositorioMatricula;
 import com.gerenciamento.universidade.Repositorio.RepositorioTurma;
 
 @Service
+// classe criada implementando a interface "MatriculaService" - Poliformismo
 public class MatriculaServiceImplemente implements MatriculaService {
 
     @Autowired
+    // criando um objeto visivel somente para esta classe - Encapsulamento
     private RepositorioAluno repositorioAluno;
 
     @Autowired
+    // criando um objeto visivel somente para esta classe - Encapsulamento
     private RepositorioTurma repositorioTurma;
 
     @Autowired
+    // criando um objeto visivel somente para esta classe - Encapsulamento
     private RepositorioMatricula repositorioMatricula;
 
     @Override
+    // metodo utilizado para realizar a matricula de alunos
     public void matricularAluno(Long idAluno, Long idTurma, String curso) {
         if (idAluno == null) {
             throw new IllegalArgumentException("ID do aluno não pode ser nulo");
@@ -54,6 +59,7 @@ public class MatriculaServiceImplemente implements MatriculaService {
     }
 
     @Override
+    // metodo utilizado para consultar todas as matriculas que foram feitas
     public List<MatriculaResponseDTO> consultarTodasAsMatriculas() {
         List<Matricula> matriculas = repositorioMatricula.findAll();
         return matriculas.stream()
@@ -62,6 +68,7 @@ public class MatriculaServiceImplemente implements MatriculaService {
     }
 
     @Override
+    // metodo utilizado para consultar uma matricula especifica por "id"
     public MatriculaResponseDTO consultarById(Long id) {
         if (id == null) {
             throw new IllegalArgumentException("ID da matrícula não pode ser nulo");
@@ -72,6 +79,7 @@ public class MatriculaServiceImplemente implements MatriculaService {
     }
     
     @Override
+    // metodo utilizado para deletar uma matricula especifica por "id"
     public void deletarMatricula(Long id) {
         if (id != null) {
             repositorioMatricula.deleteById(id);

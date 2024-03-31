@@ -7,6 +7,7 @@ import com.gerenciamento.universidade.DTOs.ProfessorResponseDTO;
 import com.gerenciamento.universidade.Entidades.Professor;
 
 @Service
+// criando uma interface "ProfessorService" com o prototipo de 4 metodos que serao usados por uma classe
 public interface ProfessorService {
   public Professor cadastrarProfessor(Professor professor);
   public List<ProfessorResponseDTO> consultarTodosOsProfessores();

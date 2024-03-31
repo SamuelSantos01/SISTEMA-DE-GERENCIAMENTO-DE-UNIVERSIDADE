@@ -6,6 +6,7 @@ import com.gerenciamento.universidade.DTOs.TurmaResponseDTO;
 import com.gerenciamento.universidade.Entidades.Turma;
 
 @Service
+// criando uma interface "TurmaService" com o prototipo de 4 metodos que serao usados por uma classe
 public interface TurmaService {
     public Turma cadastrarTurma(Long idProfessor, String curso);
     public void deletarturma(Long id);

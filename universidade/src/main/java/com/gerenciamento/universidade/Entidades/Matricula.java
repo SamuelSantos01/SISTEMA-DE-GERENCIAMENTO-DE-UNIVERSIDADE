@@ -21,6 +21,7 @@ import lombok.Setter;
 @Entity(name = "MATRICULA")
 @Table(name = "MATRICULAS")
 
+// criando a classe "Matricula"
 public class Matricula {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

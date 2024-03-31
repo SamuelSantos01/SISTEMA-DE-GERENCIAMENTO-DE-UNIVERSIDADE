@@ -12,12 +12,15 @@ import com.gerenciamento.universidade.Interfaces.ProfessorService;
 import com.gerenciamento.universidade.Repositorio.RepositorioProfessor;
 
 @Service
+// classe criada implementando a interface "ProfessorService" - Poliformismo
 public class ProfessorServiceImplemente implements ProfessorService {
     
     @Autowired
+    // criando um objeto visivel somente para esta classe - Encapsulamento
     private RepositorioProfessor repositorioProfessor;
 
     @Override
+    // metodo utilizado para cadastrar um novo professor
     public Professor cadastrarProfessor(Professor professor){
         if (professor != null) {
             return repositorioProfessor.save(professor);
@@ -27,6 +30,7 @@ public class ProfessorServiceImplemente implements ProfessorService {
     }
     
     @Override
+    // metodo utilizado para consultar todos os professores
     public List<ProfessorResponseDTO> consultarTodosOsProfessores() {
         List<Professor> professores = repositorioProfessor.findAll();
         return professores.stream()
@@ -42,6 +46,7 @@ public class ProfessorServiceImplemente implements ProfessorService {
     }
 
     @Override
+    // metodo utilizado para consultar um professor especifico por "id"
     public Optional<ProfessorResponseDTO> consultarById(Long id) {
         if (id != null) {
             Optional<Professor> optionalProfessor = repositorioProfessor.findById(id);
@@ -59,6 +64,7 @@ public class ProfessorServiceImplemente implements ProfessorService {
     }
 
     @Override
+    // metodo utilizado para deletar um professor especifico por "id"
     public void deletarProfessor(Long id){
         if(id != null){
             repositorioProfessor.deleteById(id);

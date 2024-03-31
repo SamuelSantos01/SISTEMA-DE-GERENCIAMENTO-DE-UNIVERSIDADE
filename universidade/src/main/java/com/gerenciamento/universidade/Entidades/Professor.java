@@ -20,6 +20,7 @@ import lombok.Setter;
 @Entity(name = "PROFESSOR")
 @Table(name = "PROFESSORES")
 
+// criando a classe "Professor" que herda todos os atributos e metodos da classe "Pessoa" - Heranca
 public class Professor extends Pessoa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

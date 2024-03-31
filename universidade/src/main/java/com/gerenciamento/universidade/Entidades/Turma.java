@@ -22,6 +22,7 @@ import lombok.Setter;
 @Entity(name = "TURMA")
 @Table(name = "TURMAS")
 
+// criando a classe "Turma"
 public class Turma {  
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

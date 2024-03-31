@@ -12,6 +12,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
+
+// criando a classe "Pessoa"
 public class Pessoa {
     @Column(name = "NOME")
     public String nome;

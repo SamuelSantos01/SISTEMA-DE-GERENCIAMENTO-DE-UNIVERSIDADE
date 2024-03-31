@@ -7,6 +7,7 @@ import com.gerenciamento.universidade.DTOs.AlunoResponseDTO;
 import com.gerenciamento.universidade.Entidades.Aluno;
 
 @Service
+// criando uma interface "AlunoService" com o prototipo de 4 metodos que serao usados por uma classe
 public interface AlunoService {
     public Aluno cadastrarAluno(Aluno aluno);
     public List<AlunoResponseDTO> consultarTodosOsAlunos();
